@@ -412,7 +412,7 @@ public class MongoSinkTopicConfig extends AbstractConfig {
   public static final Pattern FULLY_QUALIFIED_CLASS_NAME =
       Pattern.compile("(" + CLASS_NAME + "\\.)*" + CLASS_NAME);
 
-  public static final String ID_FIELD = "_id";
+  public static final String ID_FIELD = "_kcid";
 
   static final List<String> SYNTHETIC_CONFIGS = singletonList(TOPIC_CONFIG);
 

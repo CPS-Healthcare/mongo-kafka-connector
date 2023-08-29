@@ -25,6 +25,7 @@ import org.apache.kafka.connect.sink.SinkRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.bson.BsonDateTime;
 import org.bson.BsonDocument;
 
 import com.mongodb.kafka.connect.sink.MongoSinkTopicConfig;
@@ -49,6 +50,7 @@ public class DocumentIdAdder extends PostProcessor {
         .ifPresent(
             vd -> {
               if (shouldAppend(vd)) {
+                vd.append("timestamp_kafka_sink", new BsonDateTime(System.currentTimeMillis()));
                 vd.append(ID_FIELD, idStrategy.generateId(doc, orig));
               } else if (vd.containsKey(ID_FIELD)) {
                 LOGGER.warn(
